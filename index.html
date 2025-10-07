@@ -16,6 +16,11 @@
             width: 400px;
             padding: 20px;
         }
+        .lokasi-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
         input {
             padding: 5px;
         }
@@ -31,9 +36,11 @@
 <body>
     
     <div class="container">
-    <h3>Lokasi</h3>
+        <div class="lokasi-row">
+    <h3 style="margin: 0;">Lokasi</h3>
     <input type="text" id="inputLokasi" placeholder="Masukkan lokasi">
     <button id="btnGet">Get</button>
+    </div>
 
     <p id="lokasi"></p>
     <hr>
