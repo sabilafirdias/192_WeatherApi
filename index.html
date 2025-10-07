@@ -8,9 +8,60 @@
 <body>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
+    <div class="container">
+    <h3>Lokasi</h3>
+    <input type="text" id="inputLokasi" placeholder="Masukkan nama kota">
+    <button id="btnGet">Get</button>
+
+    <h3>Cuaca</h3>
+    <p>Suhu Celcius = <span id="suhuC"></span> °C</p>
+    <p>Suhu Fahrenheit = <span id="suhuF"></span> °F</p>
+    <p>Kelembapan = <span id="kelembapan"></span>%</p>
+
+    <h3>Lokasi</h3>
+    <p>Negara = <span id="negara"></span></p>
+    <p>Provinsi = <span id="provinsi"></span></p>
+    <p>Kota/Kecamatan = <span id="kecamatan"></span></p>
+    <p>Longitude = <span id="longitude"></span></p>
+    <p>Latitude = <span id="latitude"></span></p>
+</div>
+
+
     Cuaca : <p id="lokasi"></p>
     <hr>
     <div id="tampilan"></div>
+
+    <script>
+    $("#btnGet").click(function(){
+        const lokasi = $("#inputLokasi").val();
+        if(lokasi === ""){
+            alert("Masukkan nama kota terlebih dahulu!");
+            return;
+        }
+
+        const urlapi = `http://api.weatherapi.com/v1/current.json?key=b9b4c55c9ca4457c85265641250710&q=${lokasi}&aqi=no`;
+
+        $.ajax({
+            url: urlapi,
+            method: "GET",
+            success: function(data){
+                console.log(data);
+                let suhuC = data.current.temp_c;
+                let suhuF = data.current.temp_f;
+                let kelembapan = data.current.humidity;
+                let negara = data.location.country;
+                let provinsi = data.location.region;
+                let kecamatan = data.location.name;
+                let longitude = data.location.lon;
+                let latitude = data.location.lat;
+            },
+            error: function(err){
+                alert("Lokasi tidak ditemukan atau terjadi kesalahan!");
+                console.log(err);
+            }
+        });
+    });
+</script>
 
     <script>
         const urlapi = "http://api.weatherapi.com/v1/current.json?key=b9b4c55c9ca4457c85265641250710&q=Yogyakarta&aqi=no";
