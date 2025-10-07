@@ -35,9 +35,8 @@
     <input type="text" id="inputLokasi" placeholder="Masukkan lokasi">
     <button id="btnGet">Get</button>
 
-    Cuaca : <p id="lokasi"></p>
+    <p id="lokasi"></p>
     <hr>
-    <div id="tampilan"></div>
 
     <h3>Cuaca</h3>
     <p>Suhu Celcius = <span id="suhuC"></span> °C</p>
@@ -77,21 +76,26 @@
                 let longitude = data.location.lon;
                 let latitude = data.location.lat;
 
-                const v = document.getElementById("tampilan");
-                const l = document.getElementById("lokasi");
+                const suhuCelcius = document.getElementById("suhuC");
+                const suhuFahrenheit = document.getElementById("suhuF");
+                const hum = document.getElementById("kelembapan");
+                const negaraEl = document.getElementById("negara");
+                const provinsiEl = document.getElementById("provinsi");
+                const kecamatanEl = document.getElementById("kecamatan");
+                const lonEl = document.getElementById("longitude");
+                const latEl = document.getElementById("latitude");
+                const lokasiEl = document.getElementById("lokasi");
 
-                l.innerHTML = kecamatan;
-                v.innerHTML = `
-                    <p>Suhu Celcius = ${suhuC} °C</p>
-                    <p>Suhu Fahrenheit = ${suhuF} °F</p>
-                    <p>Kelembapan = ${kelembapan}%</p>
-                    <hr>
-                    <p>Negara = ${negara}</p>
-                    <p>Provinsi = ${provinsi}</p>
-                    <p>Kecamatan = ${kecamatan}</p>
-                    <p>Longitude = ${longitude}</p>
-                    <p>Latitude = ${latitude}</p>
-                `;
+                lokasiEl.innerHTML = `<strong>${kecamatan}</strong>`;
+                suhuCelcius.innerHTML = suhuC;
+                suhuFahrenheit.innerHTML = suhuF;
+                hum.innerHTML = kelembapan;
+                negaraEl.innerHTML = negara;
+                provinsiEl.innerHTML = provinsi;
+                kecamatanEl.innerHTML = kecamatan;
+                lonEl.innerHTML = longitude;
+                latEl.innerHTML = latitude;
+
             },
             fail : function(error){
                 console.log(error);
